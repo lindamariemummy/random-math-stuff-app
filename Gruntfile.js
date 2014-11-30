@@ -7,6 +7,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-simple-mocha');
   grunt.loadNpmTasks('grunt-jscs');
+  grunt.loadNpmTasks('grunt-sass');
 
   grunt.initConfig({
     clean: {
@@ -18,7 +19,7 @@ module.exports = function(grunt) {
     copy: {
       dev: {
         cwd: 'app/',
-        src: ['**/*.html', 'css/**/*.css'],
+        src: ['**/*.html', '**/*.css'],
         expand: true,
         dest: 'build/'
       }
@@ -30,6 +31,14 @@ module.exports = function(grunt) {
         dest: 'build/bundle.js',
         options: {
           transform: ['debowerify']
+        }
+      }
+    },
+
+    sass: {
+      dist: {
+        files: {
+          'app/stylesheet.css' : 'app/stylesheet.sass'
         }
       }
     },
@@ -55,6 +64,6 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('build:dev', ['clean:dev', 'browserify:dev', 'copy:dev'])
-  grunt.registerTask('test', ['jshint', 'jscs', 'simplemocha']);
+  grunt.registerTask('build:dev', ['sass:dist','clean:dev', 'browserify:dev', 'copy:dev'])
+  grunt.registerTask('default', ['jshint', 'jscs', 'simplemocha']);
 };
