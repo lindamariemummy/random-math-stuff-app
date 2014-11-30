@@ -15,7 +15,6 @@ describe('square root request', function() {
       .send({'number': 100})
       .end(function(err, res) {
         expect(err).to.eql(null);
-        console.log(res.body);
         expect(res.body.sqrt).to.eql(10);
       });
   });
