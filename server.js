@@ -14,5 +14,5 @@ app.use(express.static(__dirname + '/build'));
 require('./routes/routes')(app);
 
 app.listen(process.env.port || 3000, function() {
-	console.log('server running');
+  console.log('server running');
 });
