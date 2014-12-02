@@ -38,7 +38,7 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         files: {
-          'app/stylesheet.css' : 'app/stylesheet.sass'
+          'app/stylesheet.css': 'app/stylesheet.sass'
         }
       }
     },
@@ -47,12 +47,12 @@ module.exports = function(grunt) {
       options: {
         node: true
       },
-      src: ['server.js', 'routes/**/*.js']
+      src: ['server.js', 'Gruntfile.js', 'test/**.*.js', 'routes/**/*.js', 'app/**/*.js']
     },
 
     jscs: {
 
-      src: ['server.js', 'models/*.js'],
+      src: ['server.js', 'Gruntfile.js', 'test/**/*.js', 'routes/**/*.js', 'app/**/*.js'],
 
       options: {
         config: '.jscsrc'
@@ -64,6 +64,6 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('build:dev', ['sass:dist','clean:dev', 'browserify:dev', 'copy:dev'])
+  grunt.registerTask('build:dev', ['sass:dist', 'clean:dev', 'browserify:dev', 'copy:dev']);
   grunt.registerTask('default', ['jshint', 'jscs', 'simplemocha']);
 };
